@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario y Cuadrícula</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <section class="section form-section">
+      <form id="myForm">
+        <div class="field">
+          <label class="label">Nombre Completo</label>
+          <div class="control has-icons-right">
+            <input id="nombreInput" class="input" type="text" placeholder="Nombre Completo">
+            <span class="icon is-small is-right">
+              <i class="zmdi zmdi-account zmdi-hc-lg"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Correo Electrónico</label>
+          <div class="control">
+            <input id="emailInput" class="input" type="email" placeholder="Correo Electrónico">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Teléfono</label>
+          <div class="control">
+            <input id="telefonoInput" class="input" type="tel" placeholder="Teléfono">
+          </div>
+        </div>
+        <div class="field has-addons">
+          <div class="control is-expanded">
+            <input id="gustoInput" class="input" type="text" placeholder="Escribe tus gustos aquí">
+          </div>
+          <div class="control">
+            <button id="addButton" class="button is-primary">Agregar</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="section table-section">
+      <table id="dataTable" class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>Gusto</th>
+            <th>Porcentaje</th>
+            <th id="editHeader">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí se agregarán las filas dinámicamente -->
+        </tbody>
+      </table>
+      <div id="editSection" style="display: none;">
+        <p>Pulse Aceptar para guardar los cambios o cancelar para anularlos</p>
+        <button id="acceptButton" class="button is-success">Aceptar</button>
+        <button id="cancelButton" class="button is-danger">Cancelar</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

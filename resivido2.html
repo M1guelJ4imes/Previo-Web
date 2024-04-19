@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del Usuario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    .profile-card {
+      background-color: lightblue;
+      width: 300px;
+      padding: 20px;
+      color: black;
+      margin: 50px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: lightblue;
+      font-weight: bold;
+    }
+    .profile-image {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto;
+      background-color: #bbb;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card" id="profileCard">
+    <div class="profile-image"></div>
+    <h2><span id="nombre"></span></h2>
+    <table>
+      <tr>
+        <td>Email:</td>
+        <td id="email"></td>
+      </tr>
+      <tr>
+        <td>Teléfono:</td>
+        <td id="telefono"></td>
+      </tr>
+      <tr>
+        <td>Gustos:</td>
+        <td>
+          <table id="gustosTable">
+            <!-- Aquí se agregarán los gustos dinámicamente -->
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>Porcentajes:</td>
+        <td>
+          <table id="porcentajesTable">
+            <!-- Aquí se agregarán los porcentajes dinámicamente -->
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const nombre = urlParams.get('nombre');
+      const email = urlParams.get('email');
+      const telefono = urlParams.get('telefono');
+
+      document.getElementById('nombre').textContent = nombre;
+      document.getElementById('email').textContent = email;
+      document.getElementById('telefono').textContent = telefono;
+
+      // Obtener los gustos del almacenamiento local
+      const gustosJSON = localStorage.getItem('gustos');
+      const gustos = JSON.parse(gustosJSON);
+
+      // Mostrar los gustos en la tabla de gustos
+      const gustosTable = document.getElementById('gustosTable');
+      const porcentajesTable = document.getElementById('porcentajesTable');
+
+      if (gustos) {
+        gustos.forEach((gusto, index) => {
+          const gustoRow = `<tr><td>${gusto}</td></tr>`;
+          gustosTable.insertAdjacentHTML('beforeend', gustoRow);
+
+          const porcentajeRow = `<tr><td>Porcentaje ${index + 1}</td><td>0%</td></tr>`;
+          porcentajesTable.insertAdjacentHTML('beforeend', porcentajeRow);
+        });
+      } else {
+        // Opcional: Mostrar mensaje si no hay gustos guardados
+        gustosTable.insertAdjacentHTML('beforeend', '<tr><td>No hay gustos guardados</td></tr>');
+        porcentajesTable.insertAdjacentHTML('beforeend', '<tr><td>No hay porcentajes disponibles</td></tr>');
+      }
+    });
+  </script>
+</body>
+</html>
